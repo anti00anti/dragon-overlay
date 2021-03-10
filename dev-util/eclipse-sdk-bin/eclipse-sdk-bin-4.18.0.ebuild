@@ -1,6 +1,5 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=7
 
@@ -17,11 +16,11 @@ SRC_URI="amd64? ( ${SRC_BASE}-x86_64.tar.gz&r=1 -> eclipse-java-${RNAME}-${SR}-l
 
 LICENSE="EPL-1.0"
 SLOT="4.18"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="
-	>=virtual/jdk-1.8
+	( || ( dev-java/openjdk:11 dev-java/openjdk-bin:11 ) )
 	x11-libs/gtk+:2"
 
 S=${WORKDIR}/eclipse

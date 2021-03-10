@@ -43,4 +43,10 @@ esac
 # Fix for JRE 1.5.
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib
 
-exec "${ECLIPSE_BIN}" -vm $(java-config --java) "$@" "${ECLIPSE_USER_ARGS}" -vmargs ${VM_ARGS} 
+# Temporary workaround until virtual/jdk:11 has been masked
+SYSTEM_JAVA_VM=/opt/openjdk-11/bin/java
+if [ -f /opt/openjdk-bin-11/bin/java ]; then
+    SYSTEM_JAVA_VM=/opt/openjdk-bin-11/bin/java
+fi
+
+exec "${ECLIPSE_BIN}" -vm $SYSTEM_JAVA_VM "$@" "${ECLIPSE_USER_ARGS}" -vmargs ${VM_ARGS} 
