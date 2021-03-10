@@ -21,7 +21,7 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 RDEPEND="
-	virtual/jdk:11
+	>=virtual/jdk-1.8
 	x11-libs/gtk+:2"
 
 S=${WORKDIR}/eclipse
