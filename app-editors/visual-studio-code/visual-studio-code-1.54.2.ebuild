@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -59,7 +59,7 @@ src_install(){
 	#fperms +x "/opt/${PN}/libnode.so"
 	fperms +x "/opt/${PN}/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/rg"
 	fperms +x "/opt/${PN}/resources/app/extensions/git/dist/askpass.sh"
-	dosym "/opt/${PN}/bin/code" "/usr/bin/${MY_PN}"
+	dosym "{ED%/}/opt/${PN}/bin/code" "/usr/bin/${MY_PN}"
 	make_desktop_entry "${MY_PN}" "Visual Studio Code" "${MY_PN}" "Development;IDE"
 	newicon "resources/app/resources/linux/code.png" ${MY_PN}.png
 	einstalldocs
