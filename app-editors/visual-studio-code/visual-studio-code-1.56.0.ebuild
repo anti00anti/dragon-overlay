@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit desktop pax-utils
+inherit eutils desktop pax-utils
 
 MY_PN="vscode"
 MY_P=${MY_PN}-${PV}
@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-	>=media-libs/libpng-1.2.46
+	>=media-libs/libpng-1.2.46:0
 	>=x11-libs/gtk+-2.24.8-r1:2
 	x11-libs/cairo
 	gnome-base/gconf
