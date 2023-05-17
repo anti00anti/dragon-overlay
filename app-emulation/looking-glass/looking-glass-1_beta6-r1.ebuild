@@ -28,6 +28,7 @@ RDEPEND="dev-libs/libconfig:0=
 	media-libs/libsdl2
 	media-libs/sdl2-ttf
 	virtual/glu
+	media-libs/libsamplerate
 	X? (
 		x11-libs/libX11
 		x11-libs/libXfixes
