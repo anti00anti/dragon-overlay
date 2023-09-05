@@ -64,7 +64,7 @@ src_unpack() {
 	                mkdir "${PN}-host"
 	                cd "${PN}-host"
 	                unpack "${FILE}"
-                fi
+		fi
 	done
 
 }
