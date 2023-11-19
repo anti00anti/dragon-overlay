@@ -13,8 +13,6 @@ SLOT="0"
 
 KEYWORDS="~amd64"
 
-DEPEND=
-
 RDEPEND="
 	app-arch/unzip
 	|| ( app-editors/vim-core dev-util/xxd )
