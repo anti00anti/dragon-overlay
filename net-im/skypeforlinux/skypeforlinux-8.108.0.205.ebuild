@@ -31,7 +31,6 @@ RDEPEND="
 	media-libs/fontconfig:1.0[${MULTILIB_USEDEP}]
 	media-libs/freetype:2[${MULTILIB_USEDEP}]
 	media-libs/libv4l[${MULTILIB_USEDEP}]
-	net-print/cups[${MULTILIB_USEDEP}]
 	sys-apps/dbus[${MULTILIB_USEDEP}]
 	sys-devel/gcc[cxx]
 	sys-libs/glibc
