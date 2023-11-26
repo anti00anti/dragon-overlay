@@ -17,7 +17,6 @@ RESTRICT="mirror strip test"
 
 DEPEND="sys-apps/pcsc-lite"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 S="${WORKDIR}"
 
@@ -25,4 +24,12 @@ src_install() {
 	default
 	cp -R "${S}/opt" "${D}/" || die
 	udev_dorules "etc/udev/rules.d/60-iit-e-keys.rules"
+}
+
+pkg_postinst() {
+	"${ROOT}"/opt/iit/eu/sw/install.sh
+}
+
+pkg_prerm() {
+	"${ROOT}"/opt/iit/eu/sw/unistall.sh
 }
