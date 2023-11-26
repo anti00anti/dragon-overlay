@@ -9,6 +9,7 @@ DESCRIPTION="Ivanti Secure Access Client"
 HOMEPAGE="https://www.pulsesecure.net/"
 SRC_URI="https://gml.noaa.gov/aftp/pub/cornwall/VPN%20Client/old/ps-pulse-linux-22.3r1.0-b18209-64bit-installer.rpm"
 
+LICENSE="Pulse-Secure-EULA"
 SLOT="0"
 KEYWORDS="~amd64"
 
@@ -23,7 +24,6 @@ S="${WORKDIR}"
 
 src_unpack() {
 	rpm_src_unpack ${A}
-	echo ${WORKDIR}
 }
 
 src_install() {
