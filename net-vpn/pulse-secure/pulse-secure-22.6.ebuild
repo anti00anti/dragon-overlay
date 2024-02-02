@@ -7,7 +7,7 @@ inherit xdg-utils rpm
 
 DESCRIPTION="Ivanti Secure Access Client"
 HOMEPAGE="https://www.pulsesecure.net/"
-SRC_URI="https://gml.noaa.gov/aftp/pub/cornwall/VPN%20Client/old/ps-pulse-linux-22.3r1.0-b18209-64bit-installer.rpm"
+SRC_URI="https://www.rz.uni-osnabrueck.de/fileadmin/user_upload/VPN/Software/ps-pulse-linux-22.6r1.0-b26825-64bit-installer.rpm"
 
 LICENSE="Pulse-Secure-EULA"
 SLOT="0"
@@ -18,6 +18,7 @@ RESTRICT="mirror strip test"
 RDEPEND="
 		dev-cpp/gtkmm:3.0
 		net-libs/webkit-gtk:4/37
+		sys-apps/dmidecode
 "
 
 S="${WORKDIR}"
