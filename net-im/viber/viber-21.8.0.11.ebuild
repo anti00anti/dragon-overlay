@@ -9,6 +9,8 @@ DESCRIPTION="Free text and calls"
 HOMEPAGE="https://www.viber.com/en/"
 SRC_URI="https://download.cdn.viber.com/cdn/desktop/Linux/${PN}.deb -> ${P}.deb"
 
+S="${WORKDIR}"
+
 LICENSE="viber"
 SLOT="0"
 KEYWORDS="-* ~amd64"
@@ -80,8 +82,6 @@ RDEPEND="app-arch/brotli:0
 		|| ( media-sound/pulseaudio-daemon
 			media-video/pipewire[sound-server] ) )
 	|| ( sys-apps/systemd sys-apps/systemd-utils )"
-
-S="${WORKDIR}"
 
 QA_PREBUILT="opt/viber/Viber
 	opt/viber/lib/libpcre2-16.so.0

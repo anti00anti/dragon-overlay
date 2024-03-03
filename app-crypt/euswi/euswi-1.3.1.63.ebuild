@@ -10,15 +10,15 @@ HOMEPAGE="http://iit.com.ua"
 SRC_URI="https://iit.com.ua/download/productfiles/euswi.64.tar"
 
 #LICENSE=""
+
+S="${WORKDIR}"
+
 SLOT="0"
 KEYWORDS="~amd64"
-
 RESTRICT="mirror strip test"
 
 DEPEND="sys-apps/pcsc-lite"
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}"
 
 src_install() {
 	default

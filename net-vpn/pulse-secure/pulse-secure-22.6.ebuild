@@ -9,10 +9,11 @@ DESCRIPTION="Ivanti Secure Access Client"
 HOMEPAGE="https://www.pulsesecure.net/"
 SRC_URI="https://www.rz.uni-osnabrueck.de/fileadmin/user_upload/VPN/Software/ps-pulse-linux-22.6r1.0-b26825-64bit-installer.rpm"
 
+S="${WORKDIR}"
+
 LICENSE="Pulse-Secure-EULA"
 SLOT="0"
 KEYWORDS="~amd64"
-
 RESTRICT="mirror strip test"
 
 RDEPEND="
@@ -20,8 +21,6 @@ RDEPEND="
 		net-libs/webkit-gtk:4/37
 		sys-apps/dmidecode
 "
-
-S="${WORKDIR}"
 
 src_unpack() {
 	rpm_src_unpack ${A}
