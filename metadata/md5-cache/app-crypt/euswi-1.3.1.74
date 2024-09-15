@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=install postinst prerm
+DEPEND=sys-apps/pcsc-lite
+DESCRIPTION=IIT End User CA-1. Sign (web)
+EAPI=8
+HOMEPAGE=http://iit.com.ua
+INHERIT=udev
+KEYWORDS=~amd64
+RDEPEND=sys-apps/pcsc-lite
+RESTRICT=mirror strip test
+SLOT=0
+SRC_URI=https://iit.com.ua/download/productfiles/euswi.64.tar
+_eclasses_=toolchain-funcs	948855ec7ad9f11351edf9066708dfa9	multilib	7e1347c006a76bb812f3a9f663b79991	udev	3b4170e9c327a8ed17097484a016c0c8
+_md5_=e35c5a6edf1a0f240c4dec1b5957d5ab
