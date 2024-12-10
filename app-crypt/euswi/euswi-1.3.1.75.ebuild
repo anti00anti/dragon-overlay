@@ -7,7 +7,7 @@ inherit udev
 
 DESCRIPTION="IIT End User CA-1. Sign (web)"
 HOMEPAGE="http://iit.com.ua"
-SRC_URI="https://iit.com.ua/download/productfiles/euswi.64.tar"
+SRC_URI="https://iit.com.ua/download/productfiles/euswi.64.tar -> ${P}.tar"
 
 #LICENSE=""
 
