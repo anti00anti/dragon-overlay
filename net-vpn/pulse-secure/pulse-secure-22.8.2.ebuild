@@ -7,7 +7,7 @@ inherit xdg-utils rpm
 
 DESCRIPTION="Ivanti Secure Access Client"
 HOMEPAGE="https://www.pulsesecure.net/"
-SRC_URI="https://static.elisa.com/v2/image/2tqybbhjs47b/39fWWYetPu16CdMQth8vWj/ps-pulse-linux-22.8r1-b31437-installer.rpm"
+SRC_URI="https://dl.vpn.ucsb.edu/clients/Linux%20VPN%20Client/ps-pulse-linux-22.8r2-b33497-installer.rpm"
 
 S="${WORKDIR}"
 
@@ -18,7 +18,7 @@ RESTRICT="mirror strip test"
 
 RDEPEND="
 		dev-cpp/gtkmm:3.0
-		net-libs/webkit-gtk:4/37
+		net-libs/webkit-gtk:6/0
 		sys-apps/dmidecode
 "
 
