@@ -18,7 +18,7 @@ RESTRICT="mirror strip test"
 
 RDEPEND="
 		dev-cpp/gtkmm:3.0
-		net-libs/webkit-gtk:6/0
+		net-libs/webkit-gtk:4/37
 		sys-apps/dmidecode
 "
 
