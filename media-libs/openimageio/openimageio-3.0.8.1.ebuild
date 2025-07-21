@@ -124,7 +124,6 @@ DOCS=(
 )
 
 PATCHES=(
-	"${FILESDIR}/${PN}-2.5.8.0-fix-tests.patch"
 	"${FILESDIR}/${PN}-2.5.12.0-heif-find-fix.patch"
 	"${FILESDIR}/${PN}-2.5.18.0-tests-optional.patch"
 )
