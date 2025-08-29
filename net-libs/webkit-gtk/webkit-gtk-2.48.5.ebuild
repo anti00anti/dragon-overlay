@@ -146,9 +146,6 @@ src_prepare() {
 	cmake_src_prepare
 	gnome2_src_prepare
 
-	# https://bugs.gentoo.org/938162, see also mycmakeargs
-	eapply "${FILESDIR}"/2.48.3-fix-ftbfs-riscv64.patch
-
 	# We don't want -Werror for gobject-introspection (bug #947761)
 	sed -i -e "s:--warn-error::" Source/cmake/FindGI.cmake || die
 }
