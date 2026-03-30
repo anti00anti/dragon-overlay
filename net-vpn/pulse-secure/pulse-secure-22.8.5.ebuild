@@ -7,7 +7,7 @@ inherit xdg-utils rpm
 
 DESCRIPTION="Ivanti Secure Access Client"
 HOMEPAGE="https://www.pulsesecure.net/"
-SRC_URI="https://dl.vpn.ucsb.edu/clients/Linux%20VPN%20Client/ps-pulse-linux-22.8r2-b33497-installer.rpm"
+SRC_URI="https://dl.vpn.ucsb.edu/clients/Linux%20VPN%20Client/ps-pulse-linux-22.8r5-b41063-installer.rpm"
 
 S="${WORKDIR}"
 
