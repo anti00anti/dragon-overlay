@@ -1,2 +1,2 @@
-# dragon-gentoo-overaly
+# dragon-overaly
 Gentoo overlay
