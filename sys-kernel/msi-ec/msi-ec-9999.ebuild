@@ -14,7 +14,6 @@ SLOT="0"
 KEYWORDS=""
 
 DEPEND="virtual/linux-sources"
-RDEPEND=""
 
 CONFIG_CHECK="~ACPI ~ACPI_BATTERY"
 
