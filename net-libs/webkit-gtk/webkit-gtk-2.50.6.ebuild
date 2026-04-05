@@ -3,7 +3,7 @@
 
 EAPI=8
 PYTHON_REQ_USE="xml(+)"
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{10..14} )
 USE_RUBY="ruby31 ruby32 ruby33 ruby34 ruby40"
 
 inherit check-reqs flag-o-matic gnome2 optfeature python-any-r1 ruby-single toolchain-funcs cmake
@@ -66,7 +66,7 @@ RDEPEND="
 	media-libs/mesa
 	media-libs/woff2
 	net-libs/libsoup:2.4[introspection?]
-	sys-libs/zlib:0
+	virtual/zlib:=
 	x11-libs/cairo[X?]
 	x11-libs/gtk+:3[aqua?,introspection?,wayland?,X?]
 	x11-libs/libdrm
