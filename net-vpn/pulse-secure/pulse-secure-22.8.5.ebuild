@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit desktop rpm xdg
+inherit rpm xdg
 
 DESCRIPTION="Ivanti Secure Access Client (formerly Pulse Secure)"
 HOMEPAGE="https://www.ivanti.com/products/ivanti-secure-access-client"
@@ -20,15 +20,15 @@ QA_PREBUILT="opt/pulsesecure/*"
 
 # We need patchelf at build-time to fix the broken RPATH in the proprietary binary
 BDEPEND="
-	dev-util/patchelf
+dev-util/patchelf
 "
 
 RDEPEND="
-	dev-cpp/gtkmm:3.0
-	net-libs/webkit-gtk:4
-	sys-apps/dmidecode
-	sys-apps/net-tools
-	app-misc/ca-certificates
+dev-cpp/gtkmm:3.0
+net-libs/webkit-gtk:4
+sys-apps/dmidecode
+sys-apps/net-tools
+app-misc/ca-certificates
 "
 
 src_unpack() {
@@ -49,16 +49,24 @@ src_install() {
 	cp -a usr "${ED}/usr/" || die "Failed to copy /usr"
 
 	if [[ -f "${ED}/usr/share/man/man1/pulse.1.gz" ]]; then
-        gunzip "${ED}/usr/share/man/man1/pulse.1.gz" || die "Failed to decompress pulse.1.gz"
-    fi
+		gunzip "${ED}/usr/share/man/man1/pulse.1.gz" || die "Failed to decompress pulse.1.gz"
+	fi
 
 	dodir /var/lib/pulsesecure/pulse
 	keepdir /var/lib/pulsesecure/pulse
 
+	fowners -R root:root /opt/pulsesecure
+}
+
+pkg_postinst(){
 	if [[ -f /etc/ssl/certs/ca-certificates.crt ]]; then
 		dodir /etc/pki/ca-trust/extracted/openssl
-		dosym /etc/ssl/certs/ca-certificates.crt /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+		ln -fs /etc/ssl/certs/ca-certificates.crt /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
 	fi
+}
 
-	fowners -R root:root /opt/pulsesecure
+pkg_postrm(){
+	if [[ -f /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt ]]; then
+		rm /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+	fi
 }
