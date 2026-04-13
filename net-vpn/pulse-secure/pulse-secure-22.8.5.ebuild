@@ -31,10 +31,6 @@ sys-apps/net-tools
 app-misc/ca-certificates
 "
 
-src_unpack() {
-	rpm_unpack ${A}
-}
-
 src_prepare() {
 	default
 
