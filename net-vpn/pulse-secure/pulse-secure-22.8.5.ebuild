@@ -18,7 +18,6 @@ RESTRICT="mirror strip test bindist"
 
 QA_PREBUILT="opt/pulsesecure/*"
 
-# We need patchelf at build-time to fix the broken RPATH in the proprietary binary
 BDEPEND="
 dev-util/patchelf
 "
