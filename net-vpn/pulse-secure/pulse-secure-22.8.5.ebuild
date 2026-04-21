@@ -55,7 +55,7 @@ src_install() {
 
 pkg_postinst(){
 	if [[ -f /etc/ssl/certs/ca-certificates.crt ]]; then
-		dodir /etc/pki/ca-trust/extracted/openssl
+		mkdir -p /etc/pki/ca-trust/extracted/openssl
 		ln -fs /etc/ssl/certs/ca-certificates.crt /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
 	fi
 }
