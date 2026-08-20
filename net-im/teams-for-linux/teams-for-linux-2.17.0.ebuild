@@ -9,13 +9,14 @@ CHROMIUM_LANGS="
 	sv sw ta te th tr uk ur vi zh-CN zh-TW
 "
 
+RPM_COMPRESS_TYPE="xz"
+
 inherit chromium-2 desktop rpm xdg
 
-DESCRIPTION="Unofficial Microsoft Teams client for Linux. Binary precompiled version."
+DESCRIPTION="Unofficial Microsoft Teams client for Linux. Binary precompiled version"
 HOMEPAGE="https://github.com/IsmaelMartinez/teams-for-linux"
 SRC_URI="
 	amd64? ( https://github.com/IsmaelMartinez/${PN}/releases/download/v${PV}/${P}.x86_64.rpm )
-	arm64? ( https://github.com/IsmaelMartinez/${PN}/releases/download/v${PV}/${P}.aarch64.rpm )
 "
 S="${WORKDIR}"
 
