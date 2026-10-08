@@ -42,6 +42,7 @@ src_install() {
 	cp -a opt/pulsesecure "${ED}/opt/" || die "Failed to copy /opt/pulsesecure"
 	cp -a lib "${ED}/lib/" || die "Failed to copy /lib"
 	cp -a usr "${ED}/usr/" || die "Failed to copy /usr"
+	rm ${ED}/opt/pulsesecure/bin/pulseUI.webkit40
 	dosym /opt/pulsesecure/bin/pulseUI.webkit41 /opt/pulsesecure/bin/pulseUI
 
 	if [[ -f "${ED}/usr/share/man/man1/pulse.1.gz" ]]; then
