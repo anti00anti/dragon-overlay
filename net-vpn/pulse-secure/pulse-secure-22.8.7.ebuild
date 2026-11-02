@@ -41,7 +41,7 @@ src_install() {
 	dodir /opt
 	cp -a opt/pulsesecure "${ED}/opt/" || die "Failed to install /opt/pulsesecure"
 	cp -a lib "${ED}/lib/" || die "Failed to install /lib"
-	rm -rf -- "${ED}/lib/.build-id" || die "Failed to remove /lib/.build-id"
+	rm -rf -- "${ED}/usr/lib/.build-id" || die "Failed to remove /lib/.build-id"
 	cp -a usr "${ED}/usr/" || die "Failed to install /usr"
 	rm -f -- "${ED}/opt/pulsesecure/bin/pulseUI.webkit40" || die "Failed to remove pulseUI.webkit40"
 	dosym /opt/pulsesecure/bin/pulseUI.webkit41 /opt/pulsesecure/bin/pulseUI
