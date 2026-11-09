@@ -7,9 +7,11 @@ RPM_COMPRESS_TYPE=none
 
 inherit desktop rpm systemd xdg
 
+MY_PV="$(ver_rs 2 r)-b48847"
+
 DESCRIPTION="Ivanti Secure Access Client (formerly Pulse Secure)"
 HOMEPAGE="https://www.ivanti.com/products/ivanti-secure-access-client"
-SRC_URI="https://www.uwyo.edu/infotech/services/software/vpn/clients/version-22.8r7-b48847/ps-pulse-linux-22.8r7-b48847-installer.rpm"
+SRC_URI="https://www.uwyo.edu/infotech/services/software/vpn/clients/version-${MY_PV}/ps-pulse-linux-${MY_PV}-installer.rpm"
 S="${WORKDIR}"
 
 LICENSE="Pulse-Secure-EULA"
@@ -24,18 +26,34 @@ BDEPEND="
 "
 
 RDEPEND="
+	app-accessibility/at-spi2-core:2
+	app-arch/zip
 	app-misc/ca-certificates
+	dev-cpp/atkmm:0
+	dev-cpp/cairomm:0
+	dev-cpp/glibmm:2
 	dev-cpp/gtkmm:3.0
+	dev-cpp/pangomm:1.4
+	dev-libs/glib:2
 	dev-libs/libbsd
+	dev-libs/libsigc++:2
+	dev-libs/nss[utils]
+	dev-libs/openssl
+	media-libs/harfbuzz
+	net-libs/libsoup:3.0
 	net-libs/webkit-gtk:4.1
 	sys-apps/dmidecode
+	sys-apps/iproute2
 	sys-apps/net-tools
+	sys-apps/systemd
 	sys-apps/util-linux
+	sys-libs/zlib
+	sys-process/procps
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf:2
+	x11-libs/gtk+:3
 	x11-libs/libX11
-	|| (
-		sys-apps/systemd
-		sys-apps/systemd-utils
-	)
+	x11-libs/pango
 "
 
 src_prepare() {
@@ -44,55 +62,44 @@ src_prepare() {
 	einfo "Removing NULL DT_RUNPATH from libdispatch.so..."
 	patchelf --remove-rpath opt/pulsesecure/lib/dispatch/libdispatch.so || die "patchelf failed for libdispatch.so"
 
-	# Use the WebKitGTK 4.1 UI binary and remove the obsolete WebKitGTK 4.0 binary
 	mv opt/pulsesecure/bin/pulseUI.webkit41 opt/pulsesecure/bin/pulseUI || die
 	rm -f opt/pulsesecure/bin/pulseUI.webkit40 || die
 	ln -s pulseUI opt/pulsesecure/bin/pulseUI.webkit41 || die
 
-	# Decompress man page for doman
 	if [[ -f usr/share/man/man1/pulse.1.gz ]]; then
 		gzip -d usr/share/man/man1/pulse.1.gz || die
 	fi
 
-	# Fix non-executable file permissions on resources and configs
 	find opt/pulsesecure/resource -type f -exec chmod 0644 {} + || die
-	find opt/pulsesecure/lib -type f \( -name "*.txt" -o -name "*.ini" -o -name "*.conf" \) -exec chmod 0644 {} + || die
+	find opt/pulsesecure/lib -type f \( -name "*.txt" -o -name "*.ini" -o -name "*.conf" -o -name "tnc_config" \) -exec chmod 0644 {} + || die
 }
 
 src_install() {
-	# Install application files into /opt
 	dodir /opt
-	cp -a opt/pulsesecure "${ED}/opt/" || die "Failed to install /opt/pulsesecure"
+	cp -pR opt/pulsesecure "${ED}/opt/" || die "Failed to install /opt/pulsesecure"
 
-	# Systemd service unit
 	systemd_dounit lib/systemd/system/pulsesecure.service
 
-	# Desktop entry and D-Bus system policy
 	domenu opt/pulsesecure/resource/pulse.desktop
 	insinto /usr/share/dbus-1/system.d
 	doins opt/pulsesecure/lib/JUNS/net.psecure.pulse.conf
 
-	# Man page
 	doman usr/share/man/man1/pulse.1
 
-	# Convenience symlinks in PATH
 	dosym -r /opt/pulsesecure/bin/pulseUI /usr/bin/pulseUI
 	dosym -r /opt/pulsesecure/bin/pulselauncher /usr/bin/pulselauncher
 
-	# Certificate trust bundle compatibility symlink
 	dosym -r /etc/ssl/certs/ca-certificates.crt /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
 
-	# Configuration state directory
 	keepdir /var/lib/pulsesecure/pulse
 }
 
 pkg_preinst() {
 	xdg_pkg_preinst
 
-	# Clean up untracked legacy symlink created by older ebuild versions
 	local legacy_trust="${EROOT}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt"
-	if [[ -L ${legacy_trust} ]]; then
-		rm -f "${legacy_trust}"
+	if [[ -L ${legacy_trust} && $(readlink "${legacy_trust}") == "/etc/ssl/certs/ca-certificates.crt" ]]; then
+		rm -f "${legacy_trust}" || die
 	fi
 }
 
@@ -107,8 +114,4 @@ pkg_postinst() {
 	else
 		elog "  /opt/pulsesecure/bin/startup.sh start"
 	fi
-}
-
-pkg_postrm() {
-	xdg_pkg_postrm
 }
