@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit multilib udev
+inherit udev
 
 DESCRIPTION="IIT End User CA-1. Sign (web)"
 HOMEPAGE="https://iit.com.ua"
@@ -19,8 +19,13 @@ KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="bindist mirror"
 
 RDEPEND="
+	app-accessibility/at-spi2-core:2
+	dev-libs/glib:2
 	sys-apps/pcsc-lite
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:3
+	x11-libs/pango
 "
 BDEPEND="dev-util/patchelf"
 
@@ -39,7 +44,6 @@ src_install() {
 	doins -r opt/iit
 
 	fperms 0755 /opt/iit/eu/sw/euscpnmh
-	fperms 0644 /opt/iit/eu/sw/osplm.ini
 
 	udev_dorules etc/udev/rules.d/60-iit-e-keys.rules
 
